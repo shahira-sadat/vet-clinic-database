@@ -57,7 +57,7 @@ CREATE TABLE vets (
 CREATE TABLE specializations (
       species_id INT NOT NULL  REFERENCES species(id),
       vet_id INT NOT NULL   REFERENCES vets(id),
-      PRIMARY KEY( species_id,vet_id) UNIQUE
+      PRIMARY KEY( species_id,vet_id)
 );
 
 
