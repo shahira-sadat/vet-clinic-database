@@ -2,7 +2,7 @@
 
 /*Vet clinic database: create animals table*/
 CREATE TABLE animals (
-    id INT,
+    id BIGSERIAL NOT NULL PRIMARY KEY ,
     name VARCHAR(100),
     date_of_birth DATE,
     escape_attempts INT,
@@ -70,8 +70,17 @@ CREATE TABLE specializations (
 );
 
 CREATE TABLE visits (
-      animal_id INT NOT NULL   REFERENCES animals(id),
+      animal_id INT NOT NULL REFERENCES animals(id),
       vet_id INT NOT NULL  REFERENCES vets(id),
       visit_date DATE NOT NULL   
 );
 
+-- Add an email column to your owners table
+ALTER TABLE owners ADD COLUMN email VARCHAR(120);
+
+-- Create indexes
+CREATE INDEX animal_ids ON visits (animal_id);
+
+CREATE INDEX vet_ids ON visits (vet_id);
+
+CREATE INDEX owner_emails ON owners (email);
