@@ -13,5 +13,14 @@ CREATE TABLE medical_histories (
     id BIGSERIAL NOT NULL PRIMARY KEY,
     admitted_at TIMESTAMP NOT NULL,
     patient_id BIGINT NOT NULL REFERENCES patients(id),
-    status VARCHAR(255) NOT NULL
-)
+    status VARCHAR(255) NOT NULL,
+    invoices BIGINT NOT NULL REFERENCES invoices(id)
+);
+
+/* create table invoices */
+CREATE TABLE invoices (
+    medical_history_id BIGINT NOT NULL REFERENCES medical_histories(id) PRIMARY KEY,
+    total_amount DECIMAL(10,2) NOT NULL,
+    generated_at TIMESTAMP NOT NULL,
+    payed_at TIMESTAMP NOT NULL
+);
