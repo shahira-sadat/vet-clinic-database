@@ -38,3 +38,12 @@ CREATE TABLE trearments_medicalhestories (
     medical_history_id INT NOT NULL REFERENCES medical_histories(id)
 );
 
+/* create table invoice_items */
+CREATE TABLE invoice_items (
+    id BIGSERIAL NOT NULL PRIMARY KEY,
+    unit_price DECIMAL(10,2) NOT NULL,
+    quantity INT NOT NULL,
+    total_price DECIMAL(10,2) NOT NULL,
+    invoice_id INT NOT NULL REFERENCES invoices(id),
+    trearment_id INT REFERENCES trearments(id)
+);
