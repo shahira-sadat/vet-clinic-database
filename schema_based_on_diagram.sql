@@ -18,8 +18,16 @@ CREATE TABLE medical_histories (
 
 /* create table invoices */
 CREATE TABLE invoices (
+    id BIGSERIAL NOT NULL PRIMARY KEY,
     medical_history_id BIGINT NOT NULL REFERENCES medical_histories(id) PRIMARY KEY,
     total_amount DECIMAL(10,2) NOT NULL,
     generated_at TIMESTAMP NOT NULL,
     payed_at TIMESTAMP NOT NULL
+);
+
+/* create table treatments */
+CREATE TABLE treatments (
+    id BIGSERIAL NOT NULL PRIMARY KEY,
+    type VARCHAR(50) NOT NULL,
+    name VARCHAR(100) NOT NULL
 );
