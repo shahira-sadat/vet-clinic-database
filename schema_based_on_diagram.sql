@@ -16,9 +16,9 @@ CREATE TABLE medical_histories (
     status VARCHAR(255) NOT NULL
 );
 
-/* create table invoices */
+/* create table invoices with one to one relationship with medical_histories
+   which means medical_history will be the primary key of invoices table */
 CREATE TABLE invoices (
-    id BIGSERIAL NOT NULL PRIMARY KEY,
     medical_history_id BIGINT NOT NULL REFERENCES medical_histories(id),
     total_amount DECIMAL(10,2) NOT NULL,
     generated_at TIMESTAMP NOT NULL,
@@ -32,9 +32,9 @@ CREATE TABLE treatments (
     name VARCHAR(100) NOT NULL
 );
 
-/* create table trearments_medicalhestories(m:n relation) */
-CREATE TABLE trearments_medicalhestories (
-    trearment_id INT NOT NULL REFERENCES trearments(id),
+/* create table treatments_medical_histories(m:n relation) */
+CREATE TABLE treatments_medical_histories (
+    treatments_id INT NOT NULL REFERENCES treatments(id),
     medical_history_id INT NOT NULL REFERENCES medical_histories(id)
 );
 
@@ -44,13 +44,14 @@ CREATE TABLE invoice_items (
     unit_price DECIMAL(10,2) NOT NULL,
     quantity INT NOT NULL,
     total_price DECIMAL(10,2) NOT NULL,
-    invoice_id INT NOT NULL REFERENCES invoices(id),
-    trearment_id INT REFERENCES trearments(id)
+    invoice_id INT NOT NULL REFERENCES invoices(medical_history_id) ,
+    treatments_id INT REFERENCES treatments(id)
 );
 
 CREATE INDEX ON medical_histories (patient_id);
 CREATE INDEX ON invoice_items (invoice_id);
 CREATE INDEX ON invoices (medical_history_id);
-CREATE INDEX ON trearments_medicalhestories (trearment_id);
-CREATE INDEX ON trearments_medicalhestories (medical_history_id);
-CREATE INDEX ON invoice_items (trearment_id);
+CREATE INDEX ON treatments_medical_histories (treatments_id);
+CREATE INDEX ON treatments_medical_histories (medical_history_id);
+CREATE INDEX ON invoice_items (treatments_id);
+
