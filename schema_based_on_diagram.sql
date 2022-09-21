@@ -16,7 +16,7 @@ CREATE TABLE medical_histories (
     status VARCHAR(255) NOT NULL
 );
 
-/* create table invoices */
+/* create table invoices with one to one relationship with medical_histories*/
 CREATE TABLE invoices (
     medical_history_id BIGINT NOT NULL REFERENCES medical_histories(id) PRIMARY KEY,
     total_amount DECIMAL(10,2) NOT NULL,
