@@ -48,8 +48,10 @@ CREATE TABLE invoice_items (
     trearment_id INT REFERENCES trearments(id)
 );
 
-
-CREATE INDEX patient_ids ON patient(id);
-CREATE INDEX medical_history_ids ON medical_histories(id);
-CREATE INDEX treatment_ids ON trearments(id);
-CREATE INDEX invoice_ids ON invoices(id);
+CREATE INDEX ON medical_histories (patient_id);
+CREATE INDEX ON invoice_items (invoice_id);
+CREATE INDEX ON invoices (medical_history_id);
+CREATE INDEX ON trearments_medicalhestories (trearment_id);
+CREATE INDEX ON trearments_medicalhestories (medical_history_id);
+CREATE INDEX ON invoice_items (invoice_id)
+CREATE INDEX ON invoice_items (trearment_id)
