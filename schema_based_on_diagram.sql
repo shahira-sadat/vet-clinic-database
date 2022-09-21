@@ -47,3 +47,9 @@ CREATE TABLE invoice_items (
     invoice_id INT NOT NULL REFERENCES invoices(id),
     trearment_id INT REFERENCES trearments(id)
 );
+
+
+CREATE INDEX patient_ids ON patient(id);
+CREATE INDEX medical_history_ids ON medical_histories(id);
+CREATE INDEX treatment_ids ON trearments(id);
+CREATE INDEX invoice_ids ON invoices(id);
