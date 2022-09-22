@@ -1,6 +1,10 @@
 # vet-clinic-database
 This is a database project using relational database to create the data structure for a vet clinic.
 
+# Database Schema Diagram
+<img width="1012" alt="Screen Shot 2022-09-20 at 6 05 47 PM" src="https://user-images.githubusercontent.com/53530780/191292888-10dc9360-f762-4588-90b2-f006bfda1727.png">
+
+
 ## Built With
 
 ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white) 
